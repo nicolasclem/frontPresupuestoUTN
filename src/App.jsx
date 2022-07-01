@@ -15,8 +15,8 @@ import NavBar from './components/NavBar';
 const App=()=> {
   return (
  
+    
     <ThemeProvider  theme={theme}>
-      
     <BrowserRouter>
       <NavBar />
     <Routes>
@@ -30,6 +30,7 @@ const App=()=> {
     </Routes>
     </BrowserRouter>
     </ThemeProvider>
+
   
   );
 }
