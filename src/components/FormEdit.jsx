@@ -9,60 +9,55 @@ import {refreshtable} from '../redux/actions';
 
 
 const validationSchema = yup.object({
-  description: yup
-    .string('Ingresar una descirpcion')
-    .required('Descripcion es es requerido'),
-  type: yup
-    .string('Ingresar concepto /  ingreso o egreso')    
-    .required('concepto requerido'),
-  amount: yup
-    .string('Ingresar Monto')    
-    .required('Campo requerido'),
-  date: yup
-    .string('Ingresar fecha')    
-    .required('Campo requerido')
-});
-
-
-
-const createData = async(data)=>{
-
-  console.log(data);
-  console.log("Creando...");
-  await axios.post(`${process.env.REACT_APP_SERVER}operations/api`,data)
-  .then((res)=> {
-        console.log(res);
-  })  
-
-}
-const  FormOperation= ()=> {
-
-  const dispatch = useDispatch()
- 
-
-
-  
-  const formik = useFormik({
-    initialValues: {
-      description: '',
-      amount:'',
-      date:'',
-      type: '',
-    
-    },
-    validationSchema: validationSchema,
-    onSubmit: async (data) => {
-
-      await createData(data)
-      dispatch(refreshtable())
-      
-    },
+    description: yup
+      .string('Ingresar una descirpcion')
+      .required('Descripcion es es requerido'),
+    type: yup
+      .string('Ingresar concepto /  ingreso o egreso')    
+      .required('concepto requerido'),
+    amount: yup
+      .string('Ingresar Monto')    
+      .required('Campo requerido'),
+    date: yup
+      .string('Ingresar fecha')    
+      .required('Campo requerido')
   });
   
-  return (
+  const updateData = async (id,data)=>{
 
+    console.log("Editando...");
+    await axios.put(`${process.env.REACT_APP_SERVER}operations/api/${id}`,data)
+    .then((res)=> {
+          console.log(res);
+    })  
+  }
+
+const FormEdit = ({id}) => {
+
+  const dispatch = useDispatch()
+
+
+    const formik = useFormik({
+        initialValues: {
+          description: '',
+          amount:'',
+          date:'',
+          type: '',
+        
+        },
+        validationSchema: validationSchema,
+        onSubmit:  async (data) => {
+            
+            await updateData(id,data)
+            dispatch(refreshtable())
+          
+        },
+      });
+      
+  return (
+    
     <div>
-      <button onClick={()=>dispatch(refreshtable())}>Refrescar</button>
+    
     <form onSubmit={formik.handleSubmit} >
       <TextField
         fullWidth
@@ -108,12 +103,11 @@ const  FormOperation= ()=> {
     
 
       <Button color="primary" variant="contained" fullWidth type="submit">
-        Submit 
+        Submit {id}
       </Button>
     </form>
   </div>
-);
-
+  )
 }
 
-export default FormOperation
+export default FormEdit

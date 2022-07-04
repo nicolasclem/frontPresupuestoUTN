@@ -1,61 +1,58 @@
-import React from 'react'
-import { DataGrid } from '@mui/x-data-grid';
-import {  Box} from '@mui/material';
+import * as React from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import ModalForm from './ModalForm';
+import { Button } from '@mui/material';
 
 
-
-const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'description', headerName: 'Description', width: 200 },
-    { field: 'amount', headerName: 'Amount', width: 200 },
-    {
-      field: 'date',
-      headerName: 'Date',
-      type: 'number',
-      width: 200,
-    },
-    {
-      field: 'Type',
-      headerName: 'Type',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 200,
-  //     valueGetter: (params) =>
-  //       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  //   },
-    },
-    {
-      field: 'accion',
-      headerName: 'accion',
-      type: 'number',
-      width: 100,
-    },
-  ];
-  
-  const rows = [
-    { id: 1, description: 'Snow', amount: 'Jon', date: 35 ,type:1,},
-    { id: 2, description: 'Lannister', amount: 'Cersei', date: 42 ,type:1,},
-    { id: 3, description: 'Lannister', amount: 'Jaime', date: 45 ,type:1,},
-    { id: 4, description: 'Stark', amount: 'Arya', date: 16 ,type:1,},
-    { id: 5, description: 'Targaryen', amount: 'Daenerys', date: null,type: 1,},
-    { id: 6, description: 'Melisandre', amount: null, date: 150 ,type: 1,},
-    { id: 7, description: 'Clifford', amount: 'Ferrara', date: 44 ,type:1,},
-    { id: 8, description: 'Frances', amount: 'Rossini', date: 36 ,type:1,},
-    { id: 9, description: 'Roxie', amount: 'Harvey', date: 65 ,type:1,},
-  ];
-
-const TableOp = () => {
+export default function TableOp({uno ,delTable  }) {
+  console.log(uno);
   return (
-    <Box component="div" sx={{ height: 400 }}>
-      <DataGrid 
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
-    </Box>
-  )
+    
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">Concepto</TableCell>
+            <TableCell align="center">Monto</TableCell>
+            <TableCell align="center">Fecha</TableCell>
+            <TableCell align="center">Tipo</TableCell>
+            <TableCell align="center">Usuario</TableCell>
+            <TableCell align="center">Accion</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          { uno?uno.map((row) => (
+            <TableRow
+              key={row.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+              <TableCell component="th" scope="row">
+                {row.description}
+              </TableCell>
+              <TableCell align="center">${row.amount}</TableCell>
+              <TableCell align="center">{row.date}</TableCell>
+              <TableCell align="center">{row.types.name}</TableCell>
+              <TableCell align="center">{row.users.name}</TableCell>
+              <TableCell align="center">
+              <Button sx={{color:"red"}} onClick={()=>{delTable(row.id)}}>Eliminar</Button>
+              <ModalForm  id={row.id} />
+              </TableCell>
+            </TableRow>
+          )):<TableRow  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            <TableCell component="th" scope="row">
+                Esperando datos
+            </TableCell>
+            </TableRow>
+          } 
+        </TableBody>
+      </Table>
+    </TableContainer>
+          
+  );
 }
-
-export default TableOp

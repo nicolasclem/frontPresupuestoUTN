@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import FormOperation from './FormOperation'
+import FormEdit from './FormEdit';
 
 const style = {
     position: 'absolute',
@@ -17,13 +18,18 @@ const style = {
     p: 4,
   };
 
-const ModalForm = () => {
+const ModalForm = ({crear,id }) => {
+
+  
+ 
  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () =>setOpen(false);
   return (
     <div >
-         <Button onClick={handleOpen}>Registar Operacion</Button>
+      {crear?<Button onClick={handleOpen}>Crear operacion </Button>:
+        <Button onClick={handleOpen}>Editar </Button>
+      }
       <Modal
         open={open}
         onClose={handleClose}
@@ -32,9 +38,11 @@ const ModalForm = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Register Op.
+           {!crear?"Editar":"Crear"} 
           </Typography>
-          <FormOperation   />
+          {!crear?<FormEdit id={id} />:
+                   <FormOperation   />
+          }
         </Box>
       </Modal>
     </div>
