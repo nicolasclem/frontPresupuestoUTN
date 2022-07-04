@@ -26,7 +26,7 @@ const ModalForm = ({crear,id }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () =>setOpen(false);
   return (
-    <div >
+    <Box>
       {crear?<Button onClick={handleOpen}>Crear operacion </Button>:
         <Button onClick={handleOpen}>Editar </Button>
       }
@@ -45,7 +45,7 @@ const ModalForm = ({crear,id }) => {
           }
         </Box>
       </Modal>
-    </div>
+    </Box>
   )
 }
 

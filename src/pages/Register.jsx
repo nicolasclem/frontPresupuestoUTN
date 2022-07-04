@@ -33,6 +33,7 @@ const Login = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      name:data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
     });
@@ -40,8 +41,7 @@ const Login = () => {
   }
   
   const [values, setValues] = React.useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     password: '',
     showPassword: false,
@@ -63,6 +63,7 @@ const Login = () => {
   };
   return (
     <ThemeProvider theme={theme}>
+
        <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         
@@ -95,41 +96,26 @@ const Login = () => {
           }}
           
           >
-          <Box component="div"  
-             xs={12} 
-            sx={{ 
-            display: 'flex',
-            flexDirection:'row',
-          }}
-          
-          >
+         
         <FormControl sx={{ mr: 1, width: '100%' }} variant="outlined">
           <OutlinedInput
-            id="firstName"
-            value={values.firstName}
-            onChange={handleChange('firstName')}
-            placeholder="First Name"
+            id="name"
+            name="name"
+            value={values.name}
+            onChange={handleChange('name')}
+            placeholder=" Name"
             inputProps={{
-              'aria-label': 'firstName',
+              'aria-label': 'name',
             }}
           />
           </FormControl>
-          <FormControl sx={{ width: '100%' }} variant="outlined">
-          <OutlinedInput
-            id="lastName"
-            value={values.lastName}
-            onChange={handleChange('lastName')}
-            placeholder="Last Name"
-            inputProps={{
-              'aria-label': 'lastName',
-            }}
-          />
-          </FormControl>
+         
 
-          </Box>
+          
           <FormControl sx={{ m: 1, width: '100%' }} variant="outlined">
           <OutlinedInput
             id="email"
+            name="email"
             value={values.email}
             onChange={handleChange('email')}
             placeholder="Email"
@@ -142,6 +128,7 @@ const Login = () => {
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="password"
+            name="password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
@@ -193,7 +180,7 @@ const Login = () => {
           }}
         />
         </Grid>
-      {/* </Container> */}
+     
     </ThemeProvider>
   )
 }

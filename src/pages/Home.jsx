@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import {refreshtable} from '../redux/actions';
 import { useSelector } from "react-redux";
 import CardInfo from '../components/CardInfo';
-import {   Grid } from '@mui/material';
+import {   Box, Grid, Typography } from '@mui/material';
 import ModalForm from '../components/ModalForm';
 import TableOp from '../components/TableOp'
 
@@ -47,10 +47,11 @@ const Home = () => {
     <CardInfo  />
     <CardInfo  />
     </Grid>
-    <p>{message}</p>
+    <Typography align="center">{message}</Typography>
     <TableOp uno={test} delTable={delTable} />
-   <ModalForm  crear  />
-   
+    <Box  sx={{ml:"45%",mb:10}}>
+     <ModalForm  crear  />
+   </Box>
 </>
 
     

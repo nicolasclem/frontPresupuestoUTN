@@ -62,7 +62,6 @@ const  FormOperation= ()=> {
   return (
 
     <div>
-      <button onClick={()=>dispatch(refreshtable())}>Refrescar</button>
     <form onSubmit={formik.handleSubmit} >
       <TextField
         fullWidth

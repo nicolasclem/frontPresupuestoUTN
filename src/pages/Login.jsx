@@ -35,6 +35,7 @@ const Login = () => {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+      remember: data.get('remember')
     });
   
   }
@@ -42,6 +43,7 @@ const Login = () => {
   const [values, setValues] = React.useState({
     email: '',
     password: '',
+    remember: '',
     showPassword: false,
   });
 
@@ -108,6 +110,7 @@ const Login = () => {
          <FormControl sx={{ m: 1, width: '100%' }} variant="outlined">
           <OutlinedInput
             id="email"
+            name="email"
             value={values.email}
             onChange={handleChange('email')}
             placeholder="Email"
@@ -121,6 +124,7 @@ const Login = () => {
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
+            name="password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
@@ -142,6 +146,8 @@ const Login = () => {
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 sx={{ m: 1, width: '100%' }}
+                name="remember"
+                onChange={handleChange('remember')}
                 label="Remember me"
               />
               <Button

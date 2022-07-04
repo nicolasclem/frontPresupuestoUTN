@@ -7,13 +7,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import ModalForm from './ModalForm';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 
 export default function TableOp({uno ,delTable  }) {
   console.log(uno);
   return (
-    
+    <Box sx={{p:10}}>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -53,6 +53,7 @@ export default function TableOp({uno ,delTable  }) {
         </TableBody>
       </Table>
     </TableContainer>
+    </Box>
           
   );
 }
