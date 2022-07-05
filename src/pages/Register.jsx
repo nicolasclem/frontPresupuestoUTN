@@ -18,6 +18,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import axios from 'axios';
 
 
 
@@ -29,7 +30,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const Login = () => {
   const navigate=useNavigate()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
@@ -37,7 +38,8 @@ const Login = () => {
       email: data.get('email'),
       password: data.get('password'),
     });
-  
+    await axios.post(`${process.env.REACT_APP_SERVER}register`,data)
+    console.log("registrado Controlar");
   }
   
   const [values, setValues] = React.useState({

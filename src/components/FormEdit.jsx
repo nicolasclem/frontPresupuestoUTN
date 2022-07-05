@@ -32,17 +32,21 @@ const validationSchema = yup.object({
     })  
   }
 
-const FormEdit = ({id}) => {
+const FormEdit = ({row}) => {
+  
 
+  const {description, amount,date,types,id}=row
+
+  
   const dispatch = useDispatch()
 
 
     const formik = useFormik({
         initialValues: {
-          description: '',
-          amount:'',
-          date:'',
-          type: '',
+          description,
+          amount,
+          date,
+          type:types.name,
         
         },
         validationSchema: validationSchema,

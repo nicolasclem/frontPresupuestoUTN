@@ -41,7 +41,9 @@ export default function TableOp({uno ,delTable  }) {
               <TableCell align="center">{row.users.name}</TableCell>
               <TableCell align="center">
               <Button sx={{color:"red"}} onClick={()=>{delTable(row.id)}}>Eliminar</Button>
-              <ModalForm  id={row.id} />
+              
+              <ModalForm row={row} />
+              
               </TableCell>
             </TableRow>
           )):<TableRow  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>

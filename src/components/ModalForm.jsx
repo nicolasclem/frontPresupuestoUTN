@@ -18,7 +18,7 @@ const style = {
     p: 4,
   };
 
-const ModalForm = ({crear,id }) => {
+const ModalForm = ({crear,row }) => {
 
   
  
@@ -40,7 +40,7 @@ const ModalForm = ({crear,id }) => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
            {!crear?"Editar":"Crear"} 
           </Typography>
-          {!crear?<FormEdit id={id} />:
+          {!crear?<FormEdit row={row}/>:
                    <FormOperation   />
           }
         </Box>
