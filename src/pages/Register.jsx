@@ -27,20 +27,22 @@ import axios from 'axios';
 
 
 
-const Login = () => {
+const Register = () => {
   const navigate=useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    
+    const dataRegister={
       name:data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
-    });
-    console.log(`${process.env.REACT_APP_SERVER}register`+ data);
-    await axios.post(`${process.env.REACT_APP_SERVER}register`,data)
-    console.log("registrado Controlar");
+    };
+    console.log(dataRegister);
+    //console.log(`${process.env.REACT_APP_SERVER}register`+ data);
+     await axios.post(`${process.env.REACT_APP_SERVER}register`,dataRegister)
+     console.log("registrado Controlar");
   }
   
   const [values, setValues] = React.useState({
@@ -104,6 +106,7 @@ const Login = () => {
           <OutlinedInput
             id="name"
             name="name"
+            type='text'
             value={values.name}
             onChange={handleChange('name')}
             placeholder=" Name"
@@ -119,6 +122,7 @@ const Login = () => {
           <OutlinedInput
             id="email"
             name="email"
+            type='email'
             value={values.email}
             onChange={handleChange('email')}
             placeholder="Email"
@@ -188,4 +192,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
