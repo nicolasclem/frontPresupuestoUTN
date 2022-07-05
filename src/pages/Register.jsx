@@ -38,6 +38,7 @@ const Login = () => {
       email: data.get('email'),
       password: data.get('password'),
     });
+    console.log(`${process.env.REACT_APP_SERVER}register`+ data);
     await axios.post(`${process.env.REACT_APP_SERVER}register`,data)
     console.log("registrado Controlar");
   }
