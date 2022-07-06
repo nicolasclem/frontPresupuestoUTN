@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import {refreshtable} from '../redux/actions';
 import { useSelector } from "react-redux";
-import CardInfo from '../components/CardInfo';
+
 import {   Box, Grid, Typography } from '@mui/material';
 import ModalForm from '../components/ModalForm';
 import TableOp from '../components/TableOp'
@@ -44,8 +44,7 @@ const Home = () => {
   return (
    <>
     <Grid container  alignItems="center" justifyContent="center">
-    <CardInfo  />
-    <CardInfo  />
+    
     </Grid>
     <Typography align="center">{message}</Typography>
     <TableOp uno={test} delTable={delTable} />

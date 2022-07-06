@@ -72,6 +72,7 @@ const  FormOperation= ()=> {
         onChange={formik.handleChange}
         error={formik.touched.description && Boolean(formik.errors.description)}
         helperText={formik.touched.description && formik.errors.description}
+        sx={{mb:3}}
       />
       <TextField
         fullWidth
@@ -82,6 +83,7 @@ const  FormOperation= ()=> {
         onChange={formik.handleChange}
         error={formik.touched.amount && Boolean(formik.errors.amount)}
         helperText={formik.touched.amount && formik.errors.amount}
+        sx={{mb:3}}
       />
       
       <TextField
@@ -93,6 +95,7 @@ const  FormOperation= ()=> {
         onChange={formik.handleChange}
         error={formik.touched.date && Boolean(formik.errors.date)}
         helperText={formik.touched.date && formik.errors.date}
+        sx={{mb:3}}
       />
       <TextField
         fullWidth
@@ -103,6 +106,7 @@ const  FormOperation= ()=> {
         onChange={formik.handleChange}
         error={formik.touched.type && Boolean(formik.errors.type)}
         helperText={formik.touched.type && formik.errors.type}
+        sx={{mb:3}}
       />
     
 

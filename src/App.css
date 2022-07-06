@@ -27,7 +27,28 @@
 .App-link {
   color: #61dafb;
 }
-
+.active
+{   
+    font-weight: 900;
+    color:rgb(253, 253, 253);
+}
+ul
+{
+    list-style: none;
+    display: flex;
+}
+ul li  a
+{
+    padding: 10px;
+    color: rgb(239, 237, 237);
+    text-decoration: none;
+}
+ul li  a:hover
+{
+    
+    color: #f9f9f9;
+    
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

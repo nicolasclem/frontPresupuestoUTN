@@ -8,6 +8,7 @@ import {refreshtable} from '../redux/actions';
 
 
 
+
 const validationSchema = yup.object({
     description: yup
       .string('Ingresar una descirpcion')
@@ -26,10 +27,18 @@ const validationSchema = yup.object({
   const updateData = async (id,data)=>{
 
     console.log("Editando...");
+    console.log(data);
     await axios.put(`${process.env.REACT_APP_SERVER}operations/api/${id}`,data)
-    .then((res)=> {
-          console.log(res);
-    })  
+    // await fetch(`${process.env.REACT_APP_SERVER}operations/api/${id}`,{
+    //   method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+    //   mode: 'cors', // no-cors, *cors, same-origin
+    //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    //   credentials: 'same-origin', // include, *same-origin, omit
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //     // 'Content-Type': 'application/x-www-form-urlencoded',
+    //   }}) 
+    
   }
 
 const FormEdit = ({row}) => {
@@ -72,6 +81,7 @@ const FormEdit = ({row}) => {
         onChange={formik.handleChange}
         error={formik.touched.description && Boolean(formik.errors.description)}
         helperText={formik.touched.description && formik.errors.description}
+        sx={{mb:3}}
       />
       <TextField
         fullWidth
@@ -82,6 +92,7 @@ const FormEdit = ({row}) => {
         onChange={formik.handleChange}
         error={formik.touched.amount && Boolean(formik.errors.amount)}
         helperText={formik.touched.amount && formik.errors.amount}
+        sx={{mb:3}}
       />
       
       <TextField
@@ -93,6 +104,7 @@ const FormEdit = ({row}) => {
         onChange={formik.handleChange}
         error={formik.touched.date && Boolean(formik.errors.date)}
         helperText={formik.touched.date && formik.errors.date}
+        sx={{mb:3}}
       />
       <TextField
         fullWidth
@@ -103,6 +115,7 @@ const FormEdit = ({row}) => {
         onChange={formik.handleChange}
         error={formik.touched.type && Boolean(formik.errors.type)}
         helperText={formik.touched.type && formik.errors.type}
+        sx={{mb:3}}
       />
     
 

@@ -27,6 +27,7 @@ import axios from 'axios';
 
 
 
+
 const Login = () => {
   const navigate=useNavigate()
 
@@ -40,7 +41,11 @@ const Login = () => {
     });
 
     await axios.post(`${process.env.REACT_APP_SERVER}login`,dataLogin)
-     console.log("Logeando Controlar");
+    .then(res=>
+      console.log("logeando...." + res)
+      )
+      
+    navigate('/home')
   
   }
   
