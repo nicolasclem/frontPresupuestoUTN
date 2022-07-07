@@ -29,7 +29,7 @@ const createData = async(data)=>{
 
   console.log(data);
   console.log("Creando...");
-  await axios.post(`${process.env.REACT_APP_SERVER}operations/api`,data)
+  await axios.post(`${process.env.REACT_APP_SERVER}operations/api`,data,{withCredentials:true})
   .then((res)=> {
         console.log(res);
   })  

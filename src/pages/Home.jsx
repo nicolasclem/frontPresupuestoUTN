@@ -21,13 +21,13 @@ const Home = () => {
 
   const dataTable =async ()=>{
 
-    const {data} = await axios.get(`${process.env.REACT_APP_SERVER}operations/api`)
+    const {data} = await axios.get(`${process.env.REACT_APP_SERVER}operations/api`,{withCredentials:true})
     setTest(data.data)    
   }
 
   const delTable = async (id)=>{
 
-    await axios.delete((`${process.env.REACT_APP_SERVER}operations/api/${id}`))
+    await axios.delete(`${process.env.REACT_APP_SERVER}operations/api/${id}`,{withCredentials:true})
 
     dispatch(refreshtable())
 
