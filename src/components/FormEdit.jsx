@@ -28,7 +28,7 @@ const validationSchema = yup.object({
 
     console.log("Editando...");
     console.log(data);
-    await axios.put(`${process.env.REACT_APP_SERVER}/operations/api/${id}`,data,{withCredentials:true})
+    await axios.put(`${process.env.REACT_APP_SERVER}/operations/api/${id}`,data)
     // await fetch(`${process.env.REACT_APP_SERVER}operations/api/${id}`,{
     //   method: 'PUT', // *GET, POST, PUT, DELETE, etc.
     //   mode: 'cors', // no-cors, *cors, same-origin
