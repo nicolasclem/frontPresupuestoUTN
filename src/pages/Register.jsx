@@ -41,7 +41,7 @@ const Register = () => {
     };
     console.log(dataRegister);
     //console.log(`${process.env.REACT_APP_SERVER}register`+ data);
-     await axios.post(`${process.env.REACT_APP_SERVER}register`,dataRegister,{withCredentials:true})
+     await axios.post(`${process.env.REACT_APP_SERVER}/register`,dataRegister,{withCredentials:true})
      console.log("registrado Controlar");
   }
   
