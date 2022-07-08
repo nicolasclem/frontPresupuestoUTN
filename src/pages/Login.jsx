@@ -40,7 +40,7 @@ const Login = () => {
       remember: data.get('remember')
     });
 
-    await axios.post(`${process.env.REACT_APP_SERVER}/login`,dataLogin,{withCredentials:true})
+    await axios.post(`${process.env.REACT_APP_SERVER}/login`,dataLogin,{mode:'cors'})
     .then(res=>
       console.log("logeando...." + res)
       )
