@@ -40,8 +40,8 @@ const Register = () => {
       password: data.get('password'),
     };
     console.log(dataRegister);
-    //console.log(`${process.env.REACT_APP_SERVER}register`+ data);
-     await axios.post(`${process.env.REACT_APP_SERVER}/register`,dataRegister,{withCredentials:true})
+    console.log(`${process.env.REACT_APP_SERVER}register`+ data);
+     await axios.post(`${process.env.REACT_APP_SERVER}/register`,dataRegister)
      console.log("registrado Controlar");
   }
   
