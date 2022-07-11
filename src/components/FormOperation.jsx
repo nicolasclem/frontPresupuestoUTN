@@ -48,6 +48,7 @@ const  FormOperation= ()=> {
       amount:'',
       date:'',
       type: '',
+      id:localStorage.getItem('idUser')
     
     },
     validationSchema: validationSchema,

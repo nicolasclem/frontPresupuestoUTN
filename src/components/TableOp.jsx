@@ -10,8 +10,8 @@ import ModalForm from './ModalForm';
 import { Box, Button } from '@mui/material';
 
 
-export default function TableOp({uno ,delTable  }) {
-  console.log(uno);
+export default function TableOp({infoTable ,delTable  }) {
+  console.log(infoTable);
   return (
     <Box sx={{p:10}}>
     <TableContainer component={Paper}>
@@ -27,7 +27,7 @@ export default function TableOp({uno ,delTable  }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          { uno?uno.map((row) => (
+          { infoTable?infoTable.map((row) => (
             <TableRow
               key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

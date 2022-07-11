@@ -59,7 +59,9 @@ const NavBar = () => {
               </ul>
         </Typography>
         
-      
+        <Button onClick={()=>localStorage.clear()} color="inherit"  >
+                    LOGOUT
+        </Button>
       </Toolbar>
     </AppBar>
   </Box>

@@ -15,13 +15,13 @@ const Home = () => {
   const  {hookRefresh,message}  = useSelector(
     (state) => state.hookReducer
   );
-  console.log("este es el hook refesh" + hookRefresh);
+  console.log("este es el hook refesh " + hookRefresh);
   const dispatch = useDispatch()
   
 
   const dataTable =async ()=>{
-
-    const {data} = await axios.get(`${process.env.REACT_APP_SERVER}/operations/api`)
+    const {data} = await axios.get(`${process.env.REACT_APP_SERVER}/operations/api/${localStorage.getItem('idUser')}`)
+    //const {data} = await axios.get(`${process.env.REACT_APP_SERVER}/operations/api`)
     setTest(data.data)    
   }
 
@@ -47,7 +47,7 @@ const Home = () => {
     
     </Grid>
     <Typography align="center">{message}</Typography>
-    <TableOp uno={test} delTable={delTable} />
+    <TableOp infoTable={test} delTable={delTable} />
     <Box  sx={{ml:"45%",mb:10}}>
      <ModalForm  crear  />
    </Box>

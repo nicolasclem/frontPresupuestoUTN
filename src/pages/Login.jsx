@@ -3,8 +3,6 @@ import{useNavigate}from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -36,23 +34,22 @@ const Login = () => {
     const data = new FormData(event.currentTarget);
     const dataLogin=({
       email: data.get('email'),
-      password: data.get('password'),
-      remember: data.get('remember')
+      password: data.get('password')
     });
 
-    await axios.post(`${process.env.REACT_APP_SERVER}/login`,dataLogin)
-    .then(res=>
-      console.log("logeando...." + res)
-      )
-      
-    navigate('/home')
+    const result = await axios.post(`${process.env.REACT_APP_SERVER}/login`,dataLogin)
+    
+    console.log(result.data.token)
+    if(result.data.token){
+     localStorage.setItem('regularUser',result.data.token)
+     localStorage.setItem('idUser',result.data.usuario.id)
+    }
   
   }
   
   const [values, setValues] = React.useState({
     email: '',
     password: '',
-    remember: '',
     showPassword: false,
   });
 
@@ -153,13 +150,6 @@ const Login = () => {
             label="Password"
           />
         </FormControl>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                sx={{ m: 1, width: '100%' }}
-                name="remember"
-                onChange={handleChange('remember')}
-                label="Remember me"
-              />
               <Button
                 type="submit"
                 fullWidth
