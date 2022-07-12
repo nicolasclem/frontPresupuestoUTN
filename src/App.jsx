@@ -8,6 +8,7 @@ import Page404 from './pages/page404/Page404'
 import Register from './pages/Register'
 import Home from './pages/Home'
 import NavBar from './components/NavBar';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 

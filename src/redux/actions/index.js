@@ -5,7 +5,7 @@ export const refreshtable =()=>{
 
     return {
         type: types.REFRESH,
-        payload:"Tabla actualizada"
+        payload:"Tabla Actualizada"
     }
 }
 
@@ -13,7 +13,7 @@ export const islogged = ()=>{
   
     return {
       type: types.ISLOGGED,
-      payload:"Usuario Logeado"
+      payload:"Welcome Back!"
     }
 
 }
@@ -21,7 +21,7 @@ export const islogout = ()=>{
   
   return {
     type: types.ISLOGOUT,
-    payload:"Usuario desconocido"
+    payload:"Usuario Desconocido"
   }
 
 }

@@ -18,6 +18,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { ToastContainer, toast } from 'react-toastify';
+
 import axios from 'axios';
 import md5 from 'md5';
 import { useDispatch } from 'react-redux';
@@ -31,10 +33,24 @@ import {islogged} from '../redux/actions';
 
 
 const Login = () => {
+
   const navigate=useNavigate()
 
  
   const dispatch = useDispatch()
+
+
+  const notiToast = ()=>{
+    toast('🦄 Welcome!', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,19 +72,18 @@ const Login = () => {
     //const tokkenDIST="3465431"
     const resultCheck = await axios.get(`${process.env.REACT_APP_SERVER}/check/${tokkenActive}`)
     
-    const authLogged = async (a,b)=>{
-      await a
-      await b
-      console.log(a , b);
-      if(a===b){
-        console.log("son IGUALES")
+    const authLogged = async (tokkenEnviado,tokkenLocalStorage)=>{
+      if(tokkenEnviado===tokkenLocalStorage){
         dispatch(islogged())
       } else{
         localStorage.clear()
 
       }
-
-      navigate('/home')
+      notiToast()
+      setTimeout(() => {
+        navigate('/home')
+      }, "3000")
+      
     }
 
     authLogged(md5(result.data.token),resultCheck.data)
@@ -201,6 +216,7 @@ const Login = () => {
           </Box>
         </Grid>
       </Grid>
+      <ToastContainer />
     </ThemeProvider>
   )
 }

@@ -8,17 +8,19 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import ModalForm from './ModalForm';
 import { Box, Button } from '@mui/material';
+import { RaceBy } from '@uiball/loaders'
+
 
 
 export default function TableOp({infoTable ,delTable  }) {
-  console.log(infoTable);
+
   return (
     <Box sx={{p:10}}>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Concepto</TableCell>
+            <TableCell align="center">Descripcion</TableCell>
             <TableCell align="center">Monto</TableCell>
             <TableCell align="center">Fecha</TableCell>
             <TableCell align="center">Tipo</TableCell>
@@ -48,7 +50,7 @@ export default function TableOp({infoTable ,delTable  }) {
             </TableRow>
           )):<TableRow  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
             <TableCell component="th" scope="row">
-                Esperando datos
+                Esperando datos...<RaceBy  size={80} lineWeight={5} speed={1.4} color="black"/>
             </TableCell>
             </TableRow>
           } 

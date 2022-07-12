@@ -40,8 +40,8 @@ const ModalForm = ({crear,row }) => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
            {!crear?"Editar":"Crear"} 
           </Typography>
-          {!crear?<FormEdit row={row}/>:
-                   <FormOperation   />
+          {!crear?<FormEdit row={row} onClose={handleClose}/>:
+                   <FormOperation  onClose={handleClose} />
           }
         </Box>
       </Modal>

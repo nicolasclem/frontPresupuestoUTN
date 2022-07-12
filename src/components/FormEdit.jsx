@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Button, TextField } from '@mui/material';
+import { Button, MenuItem, Select, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import {refreshtable} from '../redux/actions';
 
@@ -26,22 +26,12 @@ const validationSchema = yup.object({
   
   const updateData = async (id,data)=>{
 
-    console.log("Editando...");
-    console.log(data);
     await axios.put(`${process.env.REACT_APP_SERVER}/operations/api/${id}`,data)
-    // await fetch(`${process.env.REACT_APP_SERVER}operations/api/${id}`,{
-    //   method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-    //   mode: 'cors', // no-cors, *cors, same-origin
-    //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    //   credentials: 'same-origin', // include, *same-origin, omit
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //     // 'Content-Type': 'application/x-www-form-urlencoded',
-    //   }}) 
+ 
     
   }
 
-const FormEdit = ({row}) => {
+const FormEdit = ({row,onClose}) => {
   
 
   const {description, amount,date,types,id}=row
@@ -55,14 +45,15 @@ const FormEdit = ({row}) => {
           description,
           amount,
           date,
-          type:types.name,
+          type:types.id,
         
         },
         validationSchema: validationSchema,
         onSubmit:  async (data) => {
             
             await updateData(id,data)
-            dispatch(refreshtable())
+            await dispatch(refreshtable())
+            onClose()
           
         },
       });
@@ -98,28 +89,36 @@ const FormEdit = ({row}) => {
       <TextField
         fullWidth
         id="date"
-        name="date"
+        name='date'
         label="Fecha"
+        type="date"
         value={formik.values.date}
-        onChange={formik.handleChange}
-        error={formik.touched.date && Boolean(formik.errors.date)}
-        helperText={formik.touched.date && formik.errors.date}
-        sx={{mb:3}}
+          onChange={formik.handleChange}
+          error={formik.touched.date && Boolean(formik.errors.date)}
+          helperText={formik.touched.date && formik.errors.date}
+          sx={{ mb: 3 }}
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
-      <TextField
-        fullWidth
-        id="type"
-        name="type"
-        label="Concepto"
-        value={formik.values.type}
-        onChange={formik.handleChange}
-        error={formik.touched.type && Boolean(formik.errors.type)}
-        helperText={formik.touched.type && formik.errors.type}
-        sx={{mb:3}}
-      />
+     <Select
+          fullWidth
+          labelId="type"
+          id="type"
+          name='type'
+          value={formik.values.type}
+          label="Concepto"
+          onChange={formik.handleChange}
+          error={formik.touched.type && Boolean(formik.errors.type)}
+          sx={{ mb: 3 }}
+        >
+          <MenuItem value={1}>Ingreso</MenuItem>
+          <MenuItem value={2}>Egreso</MenuItem>
+         
+        </Select>
     
 
-      <Button color="primary" variant="contained" fullWidth type="submit">
+      <Button color="primary" variant="contained" fullWidth type="submit" >
         Submit {id}
       </Button>
     </form>

@@ -18,6 +18,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 
 
@@ -30,6 +31,18 @@ import axios from 'axios';
 const Register = () => {
   const navigate=useNavigate()
 
+  const notiToast = ()=>{
+    toast('🦄 Register OK!', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -39,10 +52,14 @@ const Register = () => {
       email: data.get('email'),
       password: data.get('password'),
     };
-    console.log(dataRegister);
-    console.log(`${process.env.REACT_APP_SERVER}register`+ data);
+   
      await axios.post(`${process.env.REACT_APP_SERVER}/register`,dataRegister)
-     console.log("registrado Controlar");
+
+     notiToast()
+     setTimeout(() => {
+      navigate('/')
+    }, 3000)
+     
   }
   
   const [values, setValues] = React.useState({
@@ -187,7 +204,7 @@ const Register = () => {
           }}
         />
         </Grid>
-     
+    <ToastContainer />
     </ThemeProvider>
   )
 }
