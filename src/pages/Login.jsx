@@ -19,6 +19,10 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import axios from 'axios';
+import md5 from 'md5';
+import { useDispatch } from 'react-redux';
+import {islogged} from '../redux/actions';
+
 
 
 
@@ -29,6 +33,9 @@ import axios from 'axios';
 const Login = () => {
   const navigate=useNavigate()
 
+ 
+  const dispatch = useDispatch()
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -37,16 +44,35 @@ const Login = () => {
       password: data.get('password')
     });
 
-    const result = await axios.post(`${process.env.REACT_APP_SERVER}/login`,dataLogin)
+    const result = await axios.post(`${process.env.REACT_APP_SERVER}`,dataLogin)
     
-    console.log(result.data.token)
+   
     if(result.data.token){
-     localStorage.setItem('regularUser',result.data.token)
-     localStorage.setItem('idUser',result.data.usuario.id)
+    localStorage.setItem('regularUser',md5(result.data.token))
+    localStorage.setItem('idUser',result.data.usuario.id)
     }
-  
+    
+    const tokkenActive =localStorage.getItem("regularUser")
+    //const tokkenDIST="3465431"
+    const resultCheck = await axios.get(`${process.env.REACT_APP_SERVER}/check/${tokkenActive}`)
+    
+    const authLogged = async (a,b)=>{
+      await a
+      await b
+      console.log(a , b);
+      if(a===b){
+        console.log("son IGUALES")
+        dispatch(islogged())
+      } else{
+        localStorage.clear()
+
+      }
+
+      navigate('/home')
+    }
+
+    authLogged(md5(result.data.token),resultCheck.data)
   }
-  
   const [values, setValues] = React.useState({
     email: '',
     password: '',

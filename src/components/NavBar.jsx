@@ -5,6 +5,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link ,useLocation, useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {islogout} from '../redux/actions';
+import { useSelector } from "react-redux";
+
+
 
 
 const optionNav= [
@@ -21,11 +26,18 @@ const optionNav= [
 
 
 const NavBar = () => {
+  const  { hookIsLogged}  = useSelector(
+    (state) => state.hookReducer
+  );
+  const dispatch=useDispatch()
 
-  
   const {pathname}=useLocation();
   const navigate= useNavigate();
- 
+  const logout= ()=>{
+    localStorage.clear()
+    dispatch(islogout())
+    navigate('/')
+  }
 
   const active= optionNav.findIndex(e =>e.path === pathname);
   return (
@@ -59,9 +71,13 @@ const NavBar = () => {
               </ul>
         </Typography>
         
-        <Button onClick={()=>localStorage.clear()} color="inherit"  >
+        {hookIsLogged?<Button onClick={logout} color="inherit"  >
                     LOGOUT
+        </Button>:
+        <Button onClick={()=>navigate('/')} color="inherit"  >
+        LOGIN
         </Button>
+        }
       </Toolbar>
     </AppBar>
   </Box>
