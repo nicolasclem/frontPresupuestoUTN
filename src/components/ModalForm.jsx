@@ -1,35 +1,34 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import FormOperation from './FormOperation'
-import FormEdit from './FormEdit';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import FormOperation from "./FormOperation";
+import FormEdit from "./FormEdit";
 
 const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
-const ModalForm = ({crear,row }) => {
-
-  
- 
- const [open, setOpen] = React.useState(false);
+const ModalForm = ({ crear, row }) => {
+  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () =>setOpen(false);
+  const handleClose = () => setOpen(false);
   return (
     <Box>
-      {crear?<Button onClick={handleOpen}>Crear operacion </Button>:
+      {crear ? (
+        <Button onClick={handleOpen}>Crear operacion </Button>
+      ) : (
         <Button onClick={handleOpen}>Editar </Button>
-      }
+      )}
       <Modal
         open={open}
         onClose={handleClose}
@@ -38,21 +37,17 @@ const ModalForm = ({crear,row }) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-           {!crear?"Editar":"Crear"} 
+            {!crear ? "Editar" : "Crear"}
           </Typography>
-          {!crear?<FormEdit row={row} onClose={handleClose}/>:
-                   <FormOperation  onClose={handleClose} />
-          }
+          {!crear ? (
+            <FormEdit row={row} onClose={handleClose} />
+          ) : (
+            <FormOperation onClose={handleClose} />
+          )}
         </Box>
       </Modal>
     </Box>
-  )
-}
+  );
+};
 
-export default ModalForm
-
-
-
-
-
-
+export default ModalForm;
