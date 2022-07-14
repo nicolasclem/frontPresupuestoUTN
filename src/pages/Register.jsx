@@ -57,7 +57,7 @@ const Register = () => {
         navigate("/");
       }, 3000);
     }
-    if (resRegister.status === 200) notiToast(resRegister.data.msg);
+    else  notiToast(resRegister.data.msg);
   };
 
   const [values, setValues] = React.useState({
@@ -186,7 +186,7 @@ const Register = () => {
                   variant="body2"
                   sx={{ cursor: "pointer" }}
                   onClick={() => {
-                    navigate("/login");
+                    navigate("/");
                   }}
                 >
                   {"Don't have an account? Sign Up"}

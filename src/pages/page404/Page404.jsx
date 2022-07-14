@@ -31,7 +31,7 @@ const Page404 = () => {
           cursor: "pointer",
         }}
         onClick={() => {
-          navigate("/login");
+          navigate("/");
         }}
       >
         {"HOME"}

@@ -61,6 +61,7 @@ const Login = () => {
       `${process.env.REACT_APP_SERVER}`,
       dataLogin
     );
+  
 
     if (result.data.token) {
       localStorage.setItem("regularUser", md5(result.data.token));
@@ -84,9 +85,11 @@ const Login = () => {
       setTimeout(() => {
         navigate("/home");
       }, "3000");
+    }else{
+      notiToast(result.data.msg)
     }
-    if (result.status === 206) notiToast(result.data.msg);
-    if (result.status === 200) notiToast(result.data.msg);
+   
+   
   };
 
   const [values, setValues] = React.useState({
